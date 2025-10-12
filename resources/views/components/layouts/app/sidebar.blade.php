@@ -19,23 +19,32 @@
 
 
                     <!-- NUEVAS OPCIONES DEL SIDEBAR -->
-                    <flux:navlist.item icon="inbox" wire:navigate>
-                        {{ __('Clases') }}
-                    </flux:navlist.item>
 
-                    <flux:navlist.item wire:navigate>
-                        {{ __('Tipos De Items') }}
-                    </flux:navlist.item>
+                    <!-- Opciones para Clases -->
+                    <flux:sidebar.group icon="inbox" expandable heading="Clases" class="grid">
+                        <flux:sidebar.item href="#">Lista de Clases</flux:sidebar.item>
+                        <flux:sidebar.item href="#">Crear Clase</flux:sidebar.item>
+                    </flux:sidebar.group>
 
-                    <flux:navlist.item wire:navigate>
-                        {{ __('Items') }}
-                    </flux:navlist.item>
+                    <!-- Opciones para tipo de herramientas -->
+                    <flux:sidebar.group icon="server-stack" expandable heading="Tipo De Items" class="grid">
+                        <flux:sidebar.item href="#">Lista de Tipos de items</flux:sidebar.item>
+                        <flux:sidebar.item href="#">Crear Nuevo Tipo</flux:sidebar.item>
+                    </flux:sidebar.group>
 
-                    <flux:navlist.item wire:navigate>
+                    <!-- Opciones para herramientas -->
+                    <flux:sidebar.group icon="list-bullet" expandable heading="Items" class="grid">
+                        <flux:sidebar.item href="#">Lista de Items</flux:sidebar.item>
+                        <flux:sidebar.item href="#">Crear Nuevo Items</flux:sidebar.item>
+                    </flux:sidebar.group>
+
+                    <!-- Opciones para Prestamos -->                    
+                    <flux:navlist.item icon="flag" wire:navigate>
                         {{ __('Prestamos') }}
                     </flux:navlist.item>
 
-                    <flux:navlist.item wire:navigate>
+                    <!-- Opciones para Crear Roles -->
+                    <flux:navlist.item icon="wrench-screwdriver" wire:navigate>                        
                         {{ __('Roles') }}
                     </flux:navlist.item>
 
