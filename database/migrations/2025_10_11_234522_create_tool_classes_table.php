@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tool_classes', function (Blueprint $table) {
             $table->id();
             $table->string('icon')->nullable();
-            $table->string('class');
+            $table->string('class')->unique();
             $table->string('description')->nullable();
             $table->timestamps();
         });

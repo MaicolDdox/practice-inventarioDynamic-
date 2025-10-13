@@ -22,8 +22,8 @@
 
                     <!-- Opciones para Clases -->
                     <flux:sidebar.group icon="inbox" expandable heading="Clases" class="grid">
-                        <flux:sidebar.item href="#">Lista de Clases</flux:sidebar.item>
-                        <flux:sidebar.item href="#">Crear Clase</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tool_classes.index') }}">Lista de Clases</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tool_classes.create') }}">Crear Clase</flux:sidebar.item>
                     </flux:sidebar.group>
 
                     <!-- Opciones para tipo de herramientas -->
