@@ -20,7 +20,7 @@ class ToolAttribute extends Model
 
     public function toolType(): BelongsTo
     {
-        return $this->belongsTo(ToolType::class);
+        return $this->belongsTo(ToolType::class, 'toolType_id');
     }
 
     public function attributeValue(): HasMany

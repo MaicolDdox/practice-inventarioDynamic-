@@ -28,24 +28,24 @@
 
                     <!-- Opciones para tipo de herramientas -->
                     <flux:sidebar.group icon="server-stack" expandable heading="Tipo De Items" class="grid">
-                        <flux:sidebar.item href="#">Lista de Tipos de items</flux:sidebar.item>
-                        <flux:sidebar.item href="#">Crear Nuevo Tipo</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tool_types.index') }}">Lista de Tipos de items</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tool_types.create') }}">Crear Nuevo Tipo</flux:sidebar.item>
                     </flux:sidebar.group>
 
                     <!-- Opciones para herramientas -->
                     <flux:sidebar.group icon="list-bullet" expandable heading="Items" class="grid">
-                        <flux:sidebar.item href="#">Lista de Items</flux:sidebar.item>
-                        <flux:sidebar.item href="#">Crear Nuevo Items</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tools.index') }}">Lista de Items</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tools.create') }}">Crear Nuevo Items</flux:sidebar.item>
                     </flux:sidebar.group>
 
                     <!-- Opciones para Prestamos -->                    
-                    <flux:navlist.item icon="flag" wire:navigate>
-                        {{ __('Prestamos') }}
+                    <flux:navlist.item href="{{ route('loans.index') }}" icon="flag" >
+                        Prestamos
                     </flux:navlist.item>
 
                     <!-- Opciones para Crear Roles -->
-                    <flux:navlist.item icon="wrench-screwdriver" wire:navigate>                        
-                        {{ __('Roles') }}
+                    <flux:navlist.item href="{{ route('role_creates.index') }}" icon="wrench-screwdriver" >                        
+                        Roles
                     </flux:navlist.item>
 
 

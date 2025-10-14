@@ -19,11 +19,11 @@ class AttributeValue extends Model
 
     public function tool(): BelongsTo
     {
-        return $this->belongsTo(Tool::class);
+        return $this->belongsTo(Tool::class, 'tool_id');
     }
 
     public function toolAttribute(): BelongsTo
     {
-        return $this->belongsTo(ToolAttribute::class);
+        return $this->belongsTo(ToolAttribute::class, 'toolAttribute_id');
     }
 }

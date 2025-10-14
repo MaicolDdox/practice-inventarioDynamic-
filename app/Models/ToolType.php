@@ -20,7 +20,7 @@ class ToolType extends Model
 
     public function toolClass(): BelongsTo
     {
-        return $this->belongsTo(ToolClass::class);
+        return $this->belongsTo(ToolClass::class, 'toolClass_id');
     }
 
     public function tool(): HasMany

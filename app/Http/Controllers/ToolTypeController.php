@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ToolClass;
 use App\Models\ToolType;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ToolTypeController extends Controller
      */
     public function index()
     {
-        //
+        $toolTypes = ToolType::all();
+        return view('livewire.view.type_items.listTypeItem', compact('toolTypes'));
     }
 
     /**
@@ -20,7 +22,8 @@ class ToolTypeController extends Controller
      */
     public function create()
     {
-        //
+        $toolClasses = ToolClass::all(); 
+        return view('livewire.view.type_items.create-newTypeItem', compact('toolClasses'));
     }
 
     /**
@@ -28,7 +31,15 @@ class ToolTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'toolClass_id' => 'required',
+            'name' => 'required|string|max:250',
+            'description' => 'nullable|string|max:500'
+        ]);
+
+        ToolType::create($validate);
+
+        return redirect()->route('tool_types.index')->with('success', 'Tipo de Item agregado correctamente');
     }
 
     /**
@@ -36,7 +47,7 @@ class ToolTypeController extends Controller
      */
     public function show(ToolType $toolType)
     {
-        //
+        return view('livewire.view.type_items.showToolType', compact('toolType'));
     }
 
     /**
@@ -44,7 +55,9 @@ class ToolTypeController extends Controller
      */
     public function edit(ToolType $toolType)
     {
-        //
+        $toolClasses = ToolClass::all();
+        $nameClass = ToolClass::find($toolType->toolClass_id);
+        return view('livewire.view.type_items.editToolType', compact('toolType', 'toolClasses', 'nameClass'));
     }
 
     /**
@@ -52,7 +65,15 @@ class ToolTypeController extends Controller
      */
     public function update(Request $request, ToolType $toolType)
     {
-        //
+        $validate = $request->validate([
+            'toolClass_id' => 'nullable',
+            'name' => 'nullable|string|max:250',
+            'description' => 'nullable|string|max:500'
+        ]);
+
+        $toolType->update($validate);
+
+        return redirect()->route('tool_types.index')->with('success', 'Tipo de Item actualizado correctamente');
     }
 
     /**
@@ -60,6 +81,8 @@ class ToolTypeController extends Controller
      */
     public function destroy(ToolType $toolType)
     {
-        //
+        $toolType->delete();
+
+        return redirect()->route('tool_types.index')->with('success', 'Tipo de Item Eliminado correctamente');
     }
 }

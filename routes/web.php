@@ -6,6 +6,7 @@ use App\Http\Controllers\ToolAttributeController;
 use App\Http\Controllers\ToolClassController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ToolTypeController;
+use App\Http\Controllers\RoleCreateController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -62,6 +63,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Rutas para loans (prestamos)
     Route::resource('loans', LoanController::class);
+
+    //Rutas para los Roles
+    Route::resource('role_creates', RoleCreateController::class);
 });
 
 require __DIR__.'/auth.php';
