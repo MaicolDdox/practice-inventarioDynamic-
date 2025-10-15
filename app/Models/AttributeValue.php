@@ -12,8 +12,8 @@ class AttributeValue extends Model
 
     protected $fillable = 
     [
-        'tools_id',
-        'attributes_id',
+        'tool_id',
+        'toolAttribute_id',
         'value',
     ];
 

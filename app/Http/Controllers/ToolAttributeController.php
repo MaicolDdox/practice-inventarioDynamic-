@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ToolAttribute;
+use App\Models\ToolType;
 use Illuminate\Http\Request;
 
 class ToolAttributeController extends Controller
@@ -11,8 +12,9 @@ class ToolAttributeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        $toolAttributes = ToolAttribute::all();
+        return view('livewire.view.tool_attributes.listToolAttribute', compact('toolAttributes'));
     }
 
     /**
@@ -20,7 +22,8 @@ class ToolAttributeController extends Controller
      */
     public function create()
     {
-        //
+        $toolTypes = ToolType::all();
+        return view('livewire.view.tool_attributes.create-newToolAttribute', compact('toolTypes'));
     }
 
     /**
@@ -28,7 +31,16 @@ class ToolAttributeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'toolType_id' => "required",
+            'data' => "required|string|max:250",
+            'data_type' => "required",
+        ]);
+
+        ToolAttribute::create($validate);
+
+        return redirect()->route('tool_attributes.index')->with('success', 'Atributo creado correctamente');
+
     }
 
     /**
@@ -44,7 +56,8 @@ class ToolAttributeController extends Controller
      */
     public function edit(ToolAttribute $toolAttribute)
     {
-        //
+        $toolTypes = ToolType::all();
+        return view('livewire.view.tool_attributes.editToolAttribute', compact('toolAttribute', 'toolTypes'));
     }
 
     /**
@@ -52,7 +65,15 @@ class ToolAttributeController extends Controller
      */
     public function update(Request $request, ToolAttribute $toolAttribute)
     {
-        //
+        $validate = $request->validate([
+            'toolType_id' => 'nullable',
+            'data' => 'nullable|string|max:250',
+            'data_type' => 'nullable',
+        ]);
+
+        $toolAttribute->update($validate);
+
+        return redirect()->route('tool_attributes.index')->with('success', 'Atributo actualizado correctamente');
     }
 
     /**
@@ -60,6 +81,8 @@ class ToolAttributeController extends Controller
      */
     public function destroy(ToolAttribute $toolAttribute)
     {
-        //
+        $toolAttribute->delete();
+
+        return redirect()->route('tool_attributes.index')->with('success', 'atributo eliminado correctamente');
     }
 }

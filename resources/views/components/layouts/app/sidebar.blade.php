@@ -38,6 +38,12 @@
                         <flux:sidebar.item href="{{ route('tools.create') }}">Crear Nuevo Items</flux:sidebar.item>
                     </flux:sidebar.group>
 
+                    {{-- Opciones para Atributos --}}
+                    <flux:sidebar.group icon="cloud-arrow-down" expandable heading="Atributos" class="grid">
+                        <flux:sidebar.item href="{{ route('tool_attributes.index') }}">Atributos</flux:sidebar.item>
+                        <flux:sidebar.item href="{{ route('tool_attributes.create') }}">Creat Nuevo Atributo</flux:sidebar.item>
+                    </flux:sidebar.group>
+
                     <!-- Opciones para Prestamos -->                    
                     <flux:navlist.item href="{{ route('loans.index') }}" icon="flag" >
                         Prestamos
