@@ -28,8 +28,8 @@ class ToolType extends Model
         return $this->hasMany(Tool::class);
     }
 
-    public function attribute(): HasMany
+    public function toolAttribute(): HasMany
     {
-        return $this->hasMany(ToolAttribute::class);
+        return $this->hasMany(ToolAttribute::class, 'toolType_id');
     }
 }
