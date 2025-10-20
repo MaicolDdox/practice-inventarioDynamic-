@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttributeValueController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ToolAttributeController;
 use App\Http\Controllers\ToolClassController;
 use App\Http\Controllers\ToolController;
@@ -41,10 +42,32 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 
+    //=============================
+    //========RUTAS PDF============
+    //============================
 
-    //=========================
-    //========RUTAS============
-    //=========================
+    //Rutas para  tool_classes PDF
+    Route::get('tool_classes/pdf', [PdfController::class, 'exportPdfClasses'])
+        ->name('tool_classes.pdf');
+
+    Route::get('tool_classes/pdf/{id}', [PdfController::class, 'exportPdfClass'])
+        ->name('tool_classes.pdf.id');
+
+    //Rutas para tool_types PDF
+    Route::get('tool_types/pdf', [PdfController::class, 'exportPdfToolTypes'])
+        ->name('tool_types.pdf');
+
+    Route::get('tool_types/pdf/{id}', [PdfController::class, 'exportPdfToolType'])
+        ->name('tool_types.pdf.id');
+
+    //Rutas para tool_attributes PDF
+    Route::get('tool_attributes/pdf', [PdfController::class, 'exportPdfToolAttributes'])
+        ->name('tool_attributes.pdf');
+
+
+    //=============================
+    //========RUTAS RESOURCE=======
+    //=============================
 
     //Rutas para tool_classes (clases de herramientas)
     Route::resource('tool_classes', ToolClassController::class);

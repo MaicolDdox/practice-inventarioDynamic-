@@ -10,6 +10,10 @@
         <flux:button href="{{ route('tool_types.create') }}">
             Crear Nuevo +
         </flux:button>
+
+        <flux:button href="{{ route('tool_types.pdf') }}">
+            Exportar Reporte PDF
+        </flux:button>
     </div>
 
     @if ($toolTypes->isEmpty())
@@ -32,7 +36,7 @@
                         <tr>
                             <td class="px-6 py-3">{{ $type->toolClass->class ?? null }}</td>
                             <td class="px-6 py-3">{{ $type->name }}</td>
-                            <td class="px-6 py-3">{{ $type->description }}</td>
+                            <td class="px-6 py-3 ">{{ $type->description }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
                                 <flux:dropdown>
                                     <flux:button icon:trailing="chevron-down">Options</flux:button>
@@ -42,6 +46,9 @@
                                         </flux:menu.item>
                                         <flux:menu.item :href="route('tool_types.edit', $type->id)" icon="document-duplicate">
                                             Editar
+                                        </flux:menu.item>
+                                        <flux:menu.item :href="route('tool_types.pdf.id', $type->id)" icon="document-duplicate">
+                                            Exportar Reporte PDF
                                         </flux:menu.item>
                                         <form method="POST" action="{{ route('tool_types.destroy', $type->id) }}">
                                             @csrf

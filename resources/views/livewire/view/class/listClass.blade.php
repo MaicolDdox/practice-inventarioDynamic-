@@ -15,31 +15,34 @@
         </flux:button>
     </div>
 
+    {{-- Botón para crear nueva clase --}}
+    <div class="mb-4 text-right">
+        <flux:button :href="route('tool_classes.pdf')" wire:navigate>
+            Exportar Reporte PDF
+        </flux:button>
+    </div>
+
     {{-- Verificar si hay clases --}}
     @if ($toolClasses->isEmpty())
         <div class="p-6 bg-yellow-50 text-yellow-800 rounded-xl shadow-sm">
             No hay clases registradas todavía.
         </div>
     @else
-        <div class="overflow-x-auto bg-white dark:bg-zinc-800 shadow-lg rounded-2xl">
-            <table class="min-w-full divide-y divide-gray-200 dark:divide-zinc-700">
-                <thead class="bg-gray-100 dark:bg-zinc-700">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <table class="min-w-full text-gray-700 text-sm">
+                <thead class="bg-gray-100 text-xs uppercase text-gray-600">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Icono
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Clase
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Descripción</th>
-                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Acciones</th>
+                        <th class="px-6 py-3 text-left">Icono</th>
+                        <th class="px-6 py-3 text-left">Clase</th>
+                        <th class="px-6 py-3 text-left">Descripción</th>
+                        <th class="px-6 py-3 text-left">Acciones</th>
                     </tr>
                 </thead>
 
-                <tbody class="bg-white dark:bg-zinc-800 divide-y divide-gray-200 dark:divide-zinc-700">
+                <tbody class="divide-y divide-gray-200">
                     @foreach ($toolClasses as $class)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-6 py-3">
                                 @if ($class->icon)
                                     <img src="{{ asset('storage/' . $class->icon) }}" alt="Icono"
                                         class="w-10 h-10 rounded-lg object-cover">
@@ -47,26 +50,29 @@
                                     <span class="text-gray-400 italic">Sin icono</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-100 font-medium">
-                                {{ $class->class }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-300">
-                                {{ $class->description ?? 'Sin descripción' }}
-                            </td>
+                            <td class="px-6 py-3">{{ $class->class }}</td>
+                            <td class="px-6 py-3">{{ $class->description ?? 'Sin descripción' }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
                                 <flux:dropdown>
                                     <flux:button icon:trailing="chevron-down">Options</flux:button>
                                     <flux:menu>
-                                        <flux:menu.item :href="route('tool_classes.show', $class->id)" icon="ellipsis-horizontal-circle">
+                                        <flux:menu.item :href="route('tool_classes.show', $class->id)"
+                                            icon="ellipsis-horizontal-circle">
                                             Detalles
                                         </flux:menu.item>
-                                        <flux:menu.item :href="route('tool_classes.edit', $class->id)" icon="document-duplicate">
+                                        <flux:menu.item :href="route('tool_classes.edit', $class->id)"
+                                            icon="document-duplicate">
                                             Editar
+                                        </flux:menu.item>
+                                        <flux:menu.item :href="route('tool_classes.pdf.id', $class->id)"
+                                            icon="document-duplicate">
+                                            Reporte en PDF
                                         </flux:menu.item>
                                         <form method="POST" action="{{ route('tool_classes.destroy', $class->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <flux:menu.item onclick="confirm('¿Desea borrar esta clase?')" type="submit" icon="trash" variant="danger">
+                                            <flux:menu.item onclick="confirm('¿Desea borrar esta clase?')"
+                                                type="submit" icon="trash" variant="danger">
                                                 Delete
                                             </flux:menu.item>
                                         </form>

@@ -16,7 +16,7 @@ return new class extends Migration
             //relacion con tool_class
             $table->foreignId('toolClass_id')->constrained('tool_classes')->onDelete('cascade');
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

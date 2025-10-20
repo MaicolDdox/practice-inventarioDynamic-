@@ -13,6 +13,10 @@
         <flux:button :href="route('tool_attributes.create')" wire:navigate>
             Crear Atributos
         </flux:button>
+
+        <flux:button :href="route('tool_attributes.pdf')" wire:navigate>
+            Exportar Reporte PDF
+        </flux:button>
     </div>
 
     {{-- Success --}}
